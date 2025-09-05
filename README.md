@@ -30,49 +30,49 @@ Built with Spring Boot + Java, tasks are stored in a local tasks.json file.
 ## Usage
 -----
 Run the CLI with:
-   java -jar target/task-tracker-0.0.1-SNAPSHOT.jar <command> [arguments]
+   ./task-cli <command> [arguments]
 
 ## Commands
 --------
 1. Add a new task:
    ```bash
-   java -jar target/task-tracker-0.0.1-SNAPSHOT.jar add "Buy groceries"
+   ./task-cli add "Buy groceries"
    ```
 
 2. Update a task:
    ```bash
-   java -jar target/task-tracker-0.0.1-SNAPSHOT.jar update 1 "Buy groceries and cook dinner"
+   ./task-cli update 1 "Buy groceries and cook dinner"
    ```
 
 3. Delete a task:
    ```bash
-   java -jar target/task-tracker-0.0.1-SNAPSHOT.jar delete 1
+   ./task-cli delete 1
    ```
 
 4. Mark a task as in-progress:
    ```bash
-   java -jar target/task-tracker-0.0.1-SNAPSHOT.jar mark-in-progress 2
+   ./task-cli mark-in-progress 2
    ```
 
 5. Mark a task as done:
    ```bash
-   java -jar target/task-tracker-0.0.1-SNAPSHOT.jar mark-done 2
+   ./task-cli mark-done 2
    ```
 
 6. List all tasks:
    ```bash
-   java -jar target/task-tracker-0.0.1-SNAPSHOT.jar list
+   ./task-cli list
    ```
 
 7. List tasks by status:
    ```bash
-   java -jar target/task-tracker-0.0.1-SNAPSHOT.jar list todo
+   ./task-cli list todo
    ```
    ```bash
-   java -jar target/task-tracker-0.0.1-SNAPSHOT.jar list in-progress
+   ./task-cli list in-progress
    ```
    ```bash
-   java -jar target/task-tracker-0.0.1-SNAPSHOT.jar list done
+   ./task-cli list done
    ```
 
 ## Data Storage

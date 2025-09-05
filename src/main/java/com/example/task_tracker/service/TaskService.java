@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -19,7 +21,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class TaskService {
 
     private final String FILE_PATH = "tasks.json";
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = new ObjectMapper()
+            .registerModule(new JavaTimeModule())
+            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     private List<Task> tasks = new ArrayList<>();
 
     public TaskService() {
@@ -29,12 +33,14 @@ public class TaskService {
     private void loadTasks() {
         try {
             File file = new File(FILE_PATH);
-            if (!file.exists())
+            if (!file.exists()) {
                 file.createNewFile();
-            tasks = mapper.readValue(file, new TypeReference<List<Task>>() {
-            });
+                tasks = mapper.readValue(file, new TypeReference<List<Task>>() {
+                });
+            }
 
         } catch (IOException e) {
+            e.printStackTrace();
             tasks = new ArrayList<>();
         }
     }
